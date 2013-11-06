@@ -3,6 +3,16 @@ source "http://rubygems.org"
 # Example:
 #   gem "activesupport", ">= 2.3.5"
 
+  gem 'rails' # https://github.com/rails/rails
+
+  gem 'json' #, '1.6.6' # https://github.com/flori/json
+  gem 'mysql2' # https://github.com/brianmario/mysql2
+  gem 'nokogiri' # https://github.com/sparklemotion/nokogiri
+  gem 'sanitize' # https://github.com/rgrove/sanitize
+  gem 'sinatra' # https://github.com/sinatra/sinatra
+
+  gemspec
+
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 group :test do
