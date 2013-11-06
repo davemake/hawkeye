@@ -6,13 +6,34 @@ module Hawkeye
   require 'nokogiri'
   require 'sanitize'
 
-  #def self.show(memory) #=> latest_change
+# == Hawkeye.show(memory)
+  # memory = 
+  # url = http://test.html
+  # css_selector = a
+  # item_tag = ul
+  # top_id = top
+  #
+  # Hawkeye.show(memory) #=> 
+  # memory = Hawkeye.refresh(memory, url, css_selector, item_tag, top_id) #=> <ul><a target="_blank" href="http://www.abcbots.com/test">Static</a></ul><center><a href='#top'>###</a></center><hr /><ul><a target="_blank" href="http://www.abcbots.com/test">Dynamic: z7O6sDfl7u</a></ul><center><a href='#top'>###</a></center><hr /><!-- split_tag --><!-- 2013-11-05 18:43:24 -0800 -->
+  #
+  # Hawkeye.show(memory) #=> <ul><a target="_blank" href="http://www.abcbots.com/test">Static</a></ul><center><a href='#top'>###</a></center><hr /><ul><a target="_blank" href="http://www.abcbots.com/test">Dynamic: z7O6sDfl7u</a></ul><center><a href='#top'>###</a></center><hr /><!-- split_tag --><!-- 2013-11-05 18:43:24 -0800 -->
+  # memory = Hawkeye.refresh(memory, url, css_selector, item_tag, top_id) #=> <ul><a target="_blank" href="http://www.abcbots.com/test">Dynamic: lH0eMdGrp5</a></ul><center><a href='#top'>###</a></center><hr /><!-- split_tag --><!-- 2013-11-05 18:43:24 -0800 --><a target="_blank" href="http://www.abcbots.com/test">Static</a>
+  #
+  # Hawkeye.show(memory) #=> <ul><a target="_blank" href="http://www.abcbots.com/test">Dynamic: lH0eMdGrp5</a></ul><center><a href='#top'>###</a></center><hr /><!-- split_tag --><!-- 2013-11-05 18:43:24 -0800 --><a target="_blank" href="http://www.abcbots.com/test">Static</a>
+  #
   def self.show(memory)
     x = set_defaults(memory)
     return show_latest(x)
   end
 
-  #def self.refresh(memory, url, css_selector, top_id) #=> new_memory
+# == Hawkeye.refresh(memory, url, css_selector, item_tag, top_id)
+  # memory = 
+  # url = http://test.html
+  # css_selector = a
+  # item_tag = ul
+  # top_id = top
+  # change = Hawkeye.refresh(memory, url, css_selector, item_tag, top_id) #=> <ul><a target="_blank" href="http://www.abcbots.com/test">Static</a></ul><center><a href='#top'>###</a></center><hr /><ul><a target="_blank" href="http://www.abcbots.com/test">Dynamic: 8dsmIVKgMF</a></ul><center><a href='#top'>###</a></center><hr /><!-- split_tag --><!-- 2013-11-05 18:43:24 -0800 -->
+  #
   def self.refresh(memory, url, css_selector, item_tag, top_id)
     x = set_defaults(memory, url, css_selector, item_tag, top_id)
     if x[:refresh_ready]
