@@ -81,6 +81,7 @@ DEPENDENCIES
   bundler (~> 1.0)
   cucumber
   jeweler (~> 1.8.7)
+  nokogiri
   pry
   rdoc (~> 3.12)
   rspec (~> 2.8.0)
