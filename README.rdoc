@@ -20,10 +20,30 @@
 
 = Usage
 
-== Hawkeye.refresh(memory, url, css_selector, item_tag, top_id)
+== Hawkeye.show(memory) and Hawkeye.refresh(memory, url, css_selector, item_tag, top_id)
 
-== Hawkeye.show(memory)
+  memory = ""
+  url = http://test.html
+  css_selector = a
+  item_tag = ul
+  top_id = top
+  memory = Hawkeye.refresh(memory, url, css_selector, item_tag, top_id)
 
+  memory #=> <ul><a target="_blank" href="http://www.abcbots.com/test">Static</a></ul><center><a href='#top'>###</a></center><hr /><ul><a target="_blank" href="http://www.abcbots.com/test">Dynamic: jckKGPAjO0</a></ul><center><a href='#top'>###</a></center><hr /><!-- split_tag --><!-- 2013-11-05 18:59:10 -0800 -->
+
+  Hawkeye.show(memory) #=> "<ul><a target="_blank" href="http://www.abcbots.com/test">Static</a></ul><center><a href='#top'>###</a></center><hr /><ul><a target="_blank" href="http://www.abcbots.com/test">Dynamic: jckKGPAjO0</a></ul><center><a href='#top'>###</a></center><hr />"
+
+  memory = Hawkeye.refresh(memory, url, css_selector, item_tag, top_id)
+
+  memory #=> <ul><a target="_blank" href="http://www.abcbots.com/test">Dynamic: BHrNVX2qMV</a></ul><center><a href='#top'>###</a></center><hr /><!-- split_tag --><!-- 2013-11-05 18:59:10 -0800 --><a target="_blank" href="http://www.abcbots.com/test">Static</a>
+
+  Hawkeye.show(memory) #=> "<ul><a target="_blank" href="http://www.abcbots.com/test">Dynamic: BHrNVX2qMV</a></ul><center><a href='#top'>###</a></center><hr />"
+
+  memory = Hawkeye.refresh(memory, url, css_selector, item_tag, top_id)
+
+  memory #=> <ul><a target="_blank" href="http://www.abcbots.com/test">Dynamic: hHujyT5XT3</a></ul><center><a href='#top'>###</a></center><hr /><!-- split_tag --><!-- 2013-11-05 18:59:10 -0800 --><a target="_blank" href="http://www.abcbots.com/test">Static</a>
+
+  Hawkeye.show(memory) #=> "<ul><a target="_blank" href="http://www.abcbots.com/test">Dynamic: hHujyT5XT3</a></ul><center><a href='#top'>###</a></center><hr />"
   
 == Contributing to hawkeye
  

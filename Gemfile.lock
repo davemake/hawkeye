@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hawkeye (0.0.6)
+    hawkeye (0.0.7)
       eggs
       hawkeye
       nokogiri
