@@ -33,15 +33,14 @@ module Hawkeye
     x[:css_selector] = css_selector
     x[:item_tag] = item_tag 
     x[:top_id] = top_id 
-    x[:refresh_ready] = (url.to_s + css_selector.to_s + item_tag.to_s + top_id.to_s)!=""
-    binding.pry
+    x[:refresh_ready] = ((url.to_s!="") and (css_selector.to_s!="") and (item_tag.to_s!="") and (top_id.to_s!=""))
     x[:base_url] = x[:url].to_s.split("/")[0..2].join("/") + "/"
     x[:split_tag] = "<!-- split_tag -->"
     return x
   end
 
   def self.prepend_diff(x)
-    if x[:diff].present?
+    if (x[:diff].to_s!="")
       x[:memory] = ((x[:diff]) + (x[:split_tag]) + (x[:diff_old]) )
     else
       x[:memory] = ((x[:split_tag]) + (x[:diff_old]) )
@@ -57,7 +56,7 @@ module Hawkeye
 
     diff_s = ""
     for diff in diff_a
-      if Sanitize.clean( ( (new_hsh[diff]) ) ).present?
+      if (Sanitize.clean( ( (new_hsh[diff]) ) ).to_s!="")
         diff_s << "<#{x[:item_tag]}>#{new_hsh[diff]}</#{x[:item_tag]}>"
         diff_s << "<center><a href='##{x[:top_id]}'>###</a></center>"
         diff_s << "<hr />"
@@ -68,7 +67,7 @@ module Hawkeye
     pre_diff_s = ""
     diff_s = ""
     not_full = true
-    while (old_a.present? and not_full)
+    while ((old_a.to_a.size.to_i!=0) and not_full)
       diff = old_a.shift
       pre_diff_s = new_hsh[diff].to_s
       if (diff_s + pre_diff_s).size.to_i>7000
@@ -163,7 +162,7 @@ module Hawkeye
   def self.mix_base_url_to_doc(element, doc, base_url)
 
     doc_element = doc[element]
-    if doc_element.present? and !get_first_match(doc_element, element)
+    if (doc_element.to_s!="") and !get_first_match(doc_element, element)
       doc_element_a = doc_element.split("")
       if (doc_element_a.first == "/")
         doc_element_a.shift
@@ -177,7 +176,7 @@ module Hawkeye
 
   def self.add_new_content(x)
     begin
-      if x[:url].present?
+      if (x[:url].to_s!="")
         if x[:url]=='http://test.html'
           x[:new_content] = "
           <html><body>
@@ -223,6 +222,5 @@ module Hawkeye
     puts a+": "+docs
     return docs.to_s
   end
-
 
 end

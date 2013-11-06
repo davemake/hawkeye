@@ -1,8 +1,14 @@
 PATH
   remote: .
   specs:
-    hawkeye (0.0.3)
+    hawkeye (0.0.4)
       hawkeye
+      json
+      mysql2
+      nokogiri
+      rails
+      sanitize
+      sinatra
 
 GEM
   remote: http://rubygems.org/
