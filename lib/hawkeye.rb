@@ -1,8 +1,10 @@
 module Hawkeye
 
+  require 'eggs'
   require 'hawkeye'
   require 'pry'
   require 'nokogiri'
+  require 'sanitize'
 
   #def self.show(memory) #=> latest_change
   def self.show(memory)
@@ -35,7 +37,7 @@ module Hawkeye
     x[:top_id] = top_id 
     x[:refresh_ready] = ((url.to_s!="") and (css_selector.to_s!="") and (item_tag.to_s!="") and (top_id.to_s!=""))
     x[:base_url] = x[:url].to_s.split("/")[0..2].join("/") + "/"
-    x[:split_tag] = "<!-- split_tag -->"
+    x[:split_tag] = "<!-- split_tag --><!-- #{Time.now.to_s} -->"
     return x
   end
 
@@ -177,11 +179,11 @@ module Hawkeye
   def self.add_new_content(x)
     begin
       if (x[:url].to_s!="")
-        if x[:url]=='http://test.html'
+        if x[:url]=="http://test.html"
           x[:new_content] = "
           <html><body>
             <p><a href='http://www.abcbots.com/test'>Static</a></p>
-            <p><a href='http://www.abcbots.com/test'>Dynamic: #{pass=get_random(10)}</a></p>
+            <p><a href='http://www.abcbots.com/test'>Dynamic: #{pass=Eggs.key(10)}</a></p>
             <p><a href='http://www.abcbots.com/test'>Dynamic: #{pass}</a></p>
           </body></html>"
         else
@@ -194,13 +196,6 @@ module Hawkeye
       x[:new_content] = "(Access Denied)"
     end
     return x
-  end
-
-  def self.get_random(pass_qty=30)
-    s = SecureRandom.base64(pass_qty).to_s
-    s = s.gsub("/", SecureRandom.hex(1).first.to_s)
-    s = s.gsub("+", SecureRandom.hex(1).first.to_s)
-    return s.gsub("==", SecureRandom.hex(1).first.to_s)
   end
 
   def self.add_old_content(x)

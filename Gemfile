@@ -5,11 +5,9 @@ source "http://rubygems.org"
 
   gem 'rails' # https://github.com/rails/rails
 
-  gem 'json' #, '1.6.6' # https://github.com/flori/json
-  gem 'mysql2' # https://github.com/brianmario/mysql2
+  gem 'eggs' #, path: '~/Rails/Gems/eggs' # https://github.com/abcbots/eggs
   gem 'nokogiri' # https://github.com/sparklemotion/nokogiri
   gem 'sanitize' # https://github.com/rgrove/sanitize
-  gem 'sinatra' # https://github.com/sinatra/sinatra
 
   gemspec
 
